@@ -37,7 +37,7 @@ int is_full() {				//스택이 찼다면 1, 아니라면 0 반환.
 	else return 0;
 }
 
-element pop() {				//pop연산. 가장 늦게 push된 요소를 스택에서 지우며 반환. -999 반환 시 에러
+element pop() {				//pop연산. 가장 늦게 push된 요소를 스택에서 지우며 반환. 스택이 비어있을 시 요소의 키로 -999 반환
 	if (is_empty() == 1) {
 		printf("에러 : 스택이 비어있습니다.\n\n");
 		element temp;
@@ -56,7 +56,7 @@ void push(element item) {	//push연산. 스택에 새 요소 추가.
 	S.data[++S.top] = item;
 }
 
-element peak() {			//스택에 가장 늦게 추가된 요소를 반환.
+element peak() {			//스택에 가장 늦게 추가된 요소를 반환. 스택이 비어있을 시 요소의 키로 -999 반환
 	if (is_empty() == 1) {
 		printf("에러 : 스택이 비어있습니다.\n\n");
 		element temp;
