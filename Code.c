@@ -2,44 +2,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*2023-01-04 Á¤º¹*/
-/*½ºÅÃ ±¸ÇöÇØº¸±â*/
+/*2023-01-04 ì •ë³µ*/
+/*ìŠ¤íƒ êµ¬í˜„í•´ë³´ê¸°*/
 
 #define MAX 100
 
-typedef struct element {	//key°ª°ú ¹®ÀÚ¿­·Î ÀÌ·ç¾îÁø ½ºÅÃÀÇ ¿ä¼Ò.
+typedef struct element {	//keyê°’ê³¼ ë¬¸ìì—´ë¡œ ì´ë£¨ì–´ì§„ ìŠ¤íƒì˜ ìš”ì†Œ.
 	int key;
 	char* data;
 }Element;
 
-typedef struct stack {		//element·Î ÀÌ·ç¾îÁø ½ºÅÃ
+typedef struct stack {		//elementë¡œ ì´ë£¨ì–´ì§„ ìŠ¤íƒ
 	element data[MAX];
 	int top;
 };
 
 stack S;
 
-void init() {				//½ºÅÃÀ» ÃÊ±âÈ­ÇÏ¸ç ¹®ÀÚ¿­À» µ¿ÀûÇÒ´ç.
+void init() {				//ìŠ¤íƒì„ ì´ˆê¸°í™”í•˜ë©° ë¬¸ìì—´ì„ ë™ì í• ë‹¹.
 	S.top = -1;
 	for (int i = 0; i <= MAX - 1; i++)
 		S.data[i].data = (char*)malloc(sizeof(char) * 40);
 }
 
-int is_empty() {			//½ºÅÃÀÌ ºñ¾ú´Ù¸é 1, ¾Æ´Ï¶ó¸é 0 ¹İÈ¯.
+int is_empty() {			//ìŠ¤íƒì´ ë¹„ì—ˆë‹¤ë©´ 1, ì•„ë‹ˆë¼ë©´ 0 ë°˜í™˜.
 	if (S.top == -1)
 		return 1;
 	else  return 0;
 }
 
-int is_full() {				//½ºÅÃÀÌ Ã¡´Ù¸é 1, ¾Æ´Ï¶ó¸é 0 ¹İÈ¯.
+int is_full() {				//ìŠ¤íƒì´ ì°¼ë‹¤ë©´ 1, ì•„ë‹ˆë¼ë©´ 0 ë°˜í™˜.
 	if (S.top == MAX - 1)
 		return 1;
 	else return 0;
 }
 
-element pop() {				//pop¿¬»ê. °¡Àå ´Ê°Ô pushµÈ ¿ä¼Ò¸¦ ½ºÅÃ¿¡¼­ Áö¿ì¸ç ¹İÈ¯.
+element pop() {				//popì—°ì‚°. ê°€ì¥ ëŠ¦ê²Œ pushëœ ìš”ì†Œë¥¼ ìŠ¤íƒì—ì„œ ì§€ìš°ë©° ë°˜í™˜. -999 ë°˜í™˜ ì‹œ ì—ëŸ¬
 	if (is_empty() == 1) {
-		printf("¿¡·¯ : ½ºÅÃÀÌ ºñ¾îÀÖ½À´Ï´Ù.\n\n");
+		printf("ì—ëŸ¬ : ìŠ¤íƒì´ ë¹„ì–´ìˆìŠµë‹ˆë‹¤.\n\n");
 		element temp;
 		temp.data = (char*)malloc(sizeof(char) * 40);
 		temp.key = -999;
@@ -48,17 +48,17 @@ element pop() {				//pop¿¬»ê. °¡Àå ´Ê°Ô pushµÈ ¿ä¼Ò¸¦ ½ºÅÃ¿¡¼­ Áö¿ì¸ç ¹İÈ¯.
 	return S.data[S.top--];
 }
 
-void push(element item) {	//push¿¬»ê. ½ºÅÃ¿¡ »õ ¿ä¼Ò Ãß°¡.
+void push(element item) {	//pushì—°ì‚°. ìŠ¤íƒì— ìƒˆ ìš”ì†Œ ì¶”ê°€.
 	if (is_full() == 1) {
-		printf("¿¡·¯ : ½ºÅÃÀÌ °¡µæ Ã¡½À´Ï´Ù.\n\n");
+		printf("ì—ëŸ¬ : ìŠ¤íƒì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.\n\n");
 		return;
 	}
 	S.data[++S.top] = item;
 }
 
-element peak() {			//½ºÅÃ¿¡ °¡Àå ´Ê°Ô Ãß°¡µÈ ¿ä¼Ò¸¦ ¹İÈ¯.
+element peak() {			//ìŠ¤íƒì— ê°€ì¥ ëŠ¦ê²Œ ì¶”ê°€ëœ ìš”ì†Œë¥¼ ë°˜í™˜.
 	if (is_empty() == 1) {
-		printf("¿¡·¯ : ½ºÅÃÀÌ ºñ¾îÀÖ½À´Ï´Ù.\n\n");
+		printf("ì—ëŸ¬ : ìŠ¤íƒì´ ë¹„ì–´ìˆìŠµë‹ˆë‹¤.\n\n");
 		element temp;
 		temp.data = (char*)malloc(sizeof(char) * 40);
 		temp.key = -999;
@@ -75,31 +75,31 @@ int main(void)
 	char str[40];
 	element temp;
 	while (1) {
-		printf("ÀÛ¾÷À» ¼±ÅÃÇØÁÖ¼¼¿ä.\npush : 1, pop : 2, peak : 3, Á¾·á : 4 : ");
+		printf("ì‘ì—…ì„ ì„ íƒí•´ì£¼ì„¸ìš”.\npush : 1, pop : 2, peak : 3, ì¢…ë£Œ : 4 : ");
 		scanf("%d", &button);
 		if (button == 1) {
-			printf("Å°°ªÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä. : ");
+			printf("í‚¤ê°’ì„ ì…ë ¥í•´ì£¼ì„¸ìš”. : ");
 			scanf("%d", &key);
-			printf("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä. : ");
+			printf("ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”. : ");
 			scanf("%s", &str);
 			push({ key, str });
 		}
 		if (button == 2) {
 			temp = pop();
 			if (temp.key != -999)
-				printf("popµÈ ¿ä¼ÒÀÇ Å° °ª : %d, ÀÌ¸§ : %s\n\n", temp.key, temp.data);
+				printf("popëœ ìš”ì†Œì˜ í‚¤ ê°’ : %d, ì´ë¦„ : %s\n\n", temp.key, temp.data);
 		}
 		if (button == 3) {
 			temp = peak();
 			if (temp.key != -999)
-				printf("peakµÈ ¿ä¼ÒÀÇ Å° °ª : %d, ÀÌ¸§ : %s\n\n", temp.key, temp.data);
+				printf("peakëœ ìš”ì†Œì˜ í‚¤ ê°’ : %d, ì´ë¦„ : %s\n\n", temp.key, temp.data);
 		}
 		if (button == 4) {
 			break;
 		}
 	}
-	printf("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
-	for (int i = 0; i <= MAX - 1; i++) {	//µ¿ÀûÇÒ´ç µÈ ¿ä¼ÒµéÀÇ ¹®ÀÚ¿­À» µ¿ÀûÇÒ´ç ÇØÁ¦.
+	printf("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+	for (int i = 0; i <= MAX - 1; i++) {	//ë™ì í• ë‹¹ ëœ ìš”ì†Œë“¤ì˜ ë¬¸ìì—´ì„ ë™ì í• ë‹¹ í•´ì œ.
 		free(S.data[i].data);
 	}
 	return 0;
